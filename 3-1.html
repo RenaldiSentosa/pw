@@ -10,12 +10,16 @@
       margin: 0;
       padding: 0;
       background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header {
-      background: #333;
+      background: #5c67f2;
       padding: 15px;
       text-align: center;
+      width: 100%;
     }
 
     header a {
@@ -26,80 +30,84 @@
 
     main {
       padding: 20px;
+      text-align: center;
     }
 
     section {
-      margin-bottom: 20px;
-      padding: 15px;
+      width: 90%;
+      max-width: 500px;
       background: white;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #444;
     }
 
     input, select, button {
-      width: 80%;
-      padding: 8px;
+      width: 100%;
+      padding: 10px;
       margin-top: 5px;
-      border: 1px solid #ccc;
       border-radius: 5px;
-      display: block;
+      border: 1px solid #ccc;
+      font-size: 16px;
     }
 
     input {
-      background: #ddd;
+      background: #e8e8e8;
     }
 
     #username {
-      background: green;
+      background: #4CAF50; 
       color: white;
+      border: none;
     }
 
     .bg-grey {
-      background: grey;
+      background: #6c757d;
       color: white;
+      border: none;
     }
 
     button {
-      background: purple;
+      background: #5c67f2;
       color: white;
       border: none;
       cursor: pointer;
       font-size: 16px;
+      margin-top: 10px;
+      transition: 0.3s;
     }
 
     button:hover {
-      background: darkmagenta;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    table, th, td {
-      border: 1px solid black;
-      text-align: center;
-      padding: 8px;
-    }
-
-    @media screen and (max-width: 700px) {
-      [class*='col-'] {
-        width: 50%;
-      }
-    }
-
-    @media screen and (max-width: 450px) {
-      [class*='col-'] {
-        width: 100%;
-      }
+      background: #4950d6;
     }
 
     footer {
       text-align: center;
       padding: 15px;
-      background: #333;
+      background: #5c67f2;
       color: white;
-      margin-top: 20px;
+      width: 100%;
+      position: relative;
+      bottom: 0;
+    }
+
+    @media screen and (max-width: 450px) {
+      section {
+        width: 95%;
+      }
     }
   </style>
 </head>
@@ -110,19 +118,11 @@
   </header>
 
   <main>
-    <p>Hi</p>
+    <h1>Form Login</h1>
   </main>
 
-  <section>
-    <h2>Halo World</h2>
-  </section>
-
-  <section id="gambar">
-    <img src="edu.png" height="200" width="200" alt="Gambar Edu">
-  </section>
-
-  <section id="form" class="col-">
-    <h2>Form Login</h2>
+  <section id="form">
+    <h2>Login</h2>
     <form>
       <label for="username">Username:</label>
       <input id="username" type="text">
@@ -130,56 +130,17 @@
       <label for="password">Password:</label>
       <input id="password" class="bg-grey" type="password">
 
-      <label for="warna">Warna:</label>
+      <label for="warna">Warna Favorit:</label>
       <input id="warna" class="bg-grey" type="color">
 
-      <label for="dropdown">Dropdown:</label>
+      <label for="dropdown">Pilih Opsi:</label>
       <select id="dropdown">
         <option>1</option>
         <option>2</option>
       </select>
 
-      <input type="submit" value="Cancel">
       <button type="submit">Login</button>
     </form>
-  </section>
-
-  <section id="paragraf" class="col-">
-    <h1>Pertemuan 2</h1>  
-    <h2>HTML Dasar</h2>
-    <p>Pertemuan 2 membahas dasar HTML seperti membuat paragraf sederhana dengan huruf <i>miring</i> dan <b>tebal</b>.</p>
-
-    <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
-    </ul>
-
-    <ol>
-      <li>Satu</li>
-      <li>Dua</li>
-    </ol>
-  </section>
-
-  <section id="table" class="col-">
-    <h2>Tabel</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Jan</th>
-          <th>Feb</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>4</td>
-        </tr>
-      </tbody>
-    </table>
   </section>
 
   <footer>@2025</footer>
