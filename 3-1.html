@@ -1,80 +1,137 @@
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <title> Pertemuan 3 Styling dengan CSS </title>
-<style>
-input{
-  width:80%;
-  background:purple; rapihkan dan buat agar lebih menarik 
-}  
-#username{ background:green;}
-.bg-grey{ background:grey;}
-  
-@media screen and (max-width: 700px) {
-[class*='col-'] { width: 50%; }
-}
-@media screen and (max-width: 450px) {
-[class*='col-'] { width: 100%; }
-}
-
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 3 - Styling dengan CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: white;
+            text-align: center;
+        }
+        header, footer {
+            background-color: purple;
+            padding: 10px;
+            color: white;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            margin: 20px;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: purple;
+            border-radius: 10px;
+        }
+        input, select, button {
+            width: 80%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        input[type="text"] {
+            background-color: green;
+        }
+        input[type="password"], input[type="color"] {
+            background-color: grey;
+        }
+        input[type="submit"], button {
+            background-color: darkblue;
+            cursor: pointer;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid white;
+        }
+        th, td {
+            padding: 10px;
+        }
+        @media screen and (max-width: 700px) {
+            .col- { width: 50%; margin: auto; }
+        }
+        @media screen and (max-width: 450px) {
+            .col- { width: 100%; }
+        }
+    </style>
 </head>
-  <body>
-<header><a href="ipwija.ac.id"> Home </a></header>
-<main> hi 
-<br/> 
-</main id="main" class="main">    
-<section>Halo Word</section>
-
+<body>
+    <header>
+        <a href="https://ipwija.ac.id">Home</a>
+    </header>
+    <main>
+        <h2>Hi</h2>
+    </main>
+    <section>
+        <h3>Halo World</h3>
+    </section>
     <section id="gambar">
-    <img src="edu.png" height="200" width="200">  
+        <img src="edu.png" height="200" width="200" alt="Edu Image">
     </section>
-
     <section id="form" class="col-">
-      <form>
-<label>Username:</label><input id="username" type="text">
-<label>Password:</label><input class="bg-grey" type="password">
-<label>Warna:</label><input class="bg-grey" type="color">
-<label>Dropdown:</label>
-        <select>
-          <option>1</option>
-          <option>2</option>
-        </select>
-<input type="submit" value="cancel">
-        <button> login</button>
-      </form>
+        <form>
+            <label>Username:</label>
+            <input id="username" type="text">
+            <label>Password:</label>
+            <input type="password">
+            <label>Warna:</label>
+            <input type="color">
+            <label>Dropdown:</label>
+            <select>
+                <option>1</option>
+                <option>2</option>
+            </select>
+            <input type="submit" value="Cancel">
+            <button>Login</button>
+        </form>
     </section>
-
     <section id="paragraf" class="col-">
-<p>
-<h1> Pertemuan 2</h1>  
-<h2> HTML dasar </h2>
-pertemuan 2, dasar HTML membuat paragraf <br/> sederhana dengan huruf <i>miring </i>,<b>Tebal</b>
-</p>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-  </ul>
-  <ol>
-    <li>satu</li>
-    <li>dua</li>
-  </ol>
-</section>
-<section id="table" class="col-">
-<h2>table</h2>
-<table border="1">
-<thead>
-  <tr><th>jan </th><th>feb </th></tr>
-</thead>  
-<tbody>
-<tr><td>1 </td><td>2 </td></tr>
-<tr><td>3 </td><td>4 </td></tr>
-</tbody>
-</table>
-</section>
-
-        
-<footer>@2025</footer>    
-  </body>
+        <h1>Pertemuan 2</h1>
+        <h2>HTML Dasar</h2>
+        <p>Pertemuan 2, dasar HTML membuat paragraf sederhana dengan huruf <i>miring</i>, <b>tebal</b></p>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+        </ul>
+        <ol>
+            <li>Satu</li>
+            <li>Dua</li>
+        </ol>
+    </section>
+    <section id="table" class="col-">
+        <h2>Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        &copy; 2025
+    </footer>
+</body>
 </html>
