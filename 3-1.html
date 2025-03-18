@@ -8,8 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            color: white;
+            color: #333;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
         header, footer {
             background-color: purple;
@@ -24,42 +26,44 @@
             margin: 20px;
         }
         section {
-            margin: 20px;
+            margin: 20px auto;
             padding: 20px;
-            background-color: purple;
+            max-width: 800px;
+            background-color: white;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         input, select, button {
             width: 80%;
             padding: 10px;
             margin: 5px 0;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            color: white;
         }
         input[type="text"] {
-            background-color: green;
+            background-color: #e6ffe6;
         }
         input[type="password"], input[type="color"] {
-            background-color: grey;
+            background-color: #f0f0f0;
         }
         input[type="submit"], button {
-            background-color: darkblue;
+            background-color: purple;
+            color: white;
             cursor: pointer;
+            border: none;
         }
         table {
-            width: 80%;
-            margin: auto;
+            width: 100%;
             border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid white;
+            margin-top: 10px;
         }
         th, td {
+            border: 1px solid #ccc;
             padding: 10px;
+            text-align: center;
         }
         @media screen and (max-width: 700px) {
-            .col- { width: 50%; margin: auto; }
+            .col- { width: 80%; }
         }
         @media screen and (max-width: 450px) {
             .col- { width: 100%; }
