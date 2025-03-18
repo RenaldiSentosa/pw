@@ -9,7 +9,6 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            text-align: center;
             margin: 0;
             padding: 0;
         }
@@ -17,6 +16,7 @@
             background-color: purple;
             padding: 10px;
             color: white;
+            text-align: center;
         }
         a {
             color: white;
@@ -24,6 +24,7 @@
         }
         main {
             margin: 20px;
+            text-align: center;
         }
         section {
             margin: 20px auto;
@@ -33,24 +34,36 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        input, select, button {
-            width: 80%;
-            padding: 10px;
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-group {
+            width: 100%;
+            display: flex;
+            align-items: center;
             margin: 5px 0;
+        }
+        .form-group label {
+            width: 30%;
+            text-align: right;
+            padding-right: 10px;
+        }
+        .form-group input, .form-group select {
+            width: 65%;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        input[type="text"] {
-            background-color: #e6ffe6;
-        }
-        input[type="password"], input[type="color"] {
-            background-color: #f0f0f0;
-        }
-        input[type="submit"], button {
+        .form-group input[type="submit"], button {
+            width: 100%;
             background-color: purple;
             color: white;
             cursor: pointer;
             border: none;
+            padding: 10px;
+            margin-top: 10px;
         }
         table {
             width: 100%;
@@ -63,10 +76,17 @@
             text-align: center;
         }
         @media screen and (max-width: 700px) {
-            .col- { width: 80%; }
-        }
-        @media screen and (max-width: 450px) {
-            .col- { width: 100%; }
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-group label {
+                text-align: left;
+                width: 100%;
+            }
+            .form-group input, .form-group select {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -83,34 +103,53 @@
     <section id="gambar">
         <img src="edu.png" height="200" width="200" alt="Edu Image">
     </section>
-    <section id="form" class="col-">
+    <section id="form">
         <form>
-            <label>Username:</label>
-            <input id="username" type="text">
-            <label>Password:</label>
-            <input type="password">
-            <label>Warna:</label>
-            <input type="color">
-            <label>Tanggal:</label>
-            <input type="date">
-            <label>Upload File:</label>
-            <input type="file">
-            <label>Pilih Opsi:</label>
-            <input type="checkbox"> Centang Saya
-            <input type="radio" name="pilihan" value="1"> Opsi 1
-            <input type="radio" name="pilihan" value="2"> Opsi 2
-            <label>Cari:</label>
-            <input type="search" placeholder="Cari sesuatu...">
-            <label>Dropdown:</label>
-            <select>
-                <option>1</option>
-                <option>2</option>
-            </select>
+            <div class="form-group">
+                <label>Username:</label>
+                <input id="username" type="text">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password">
+            </div>
+            <div class="form-group">
+                <label>Warna:</label>
+                <input type="color">
+            </div>
+            <div class="form-group">
+                <label>Tanggal:</label>
+                <input type="date">
+            </div>
+            <div class="form-group">
+                <label>Upload File:</label>
+                <input type="file">
+            </div>
+            <div class="form-group">
+                <label>Pilih Opsi:</label>
+                <input type="checkbox"> Centang Saya
+            </div>
+            <div class="form-group">
+                <label></label>
+                <input type="radio" name="pilihan" value="1"> Opsi 1
+                <input type="radio" name="pilihan" value="2"> Opsi 2
+            </div>
+            <div class="form-group">
+                <label>Cari:</label>
+                <input type="search" placeholder="Cari sesuatu...">
+            </div>
+            <div class="form-group">
+                <label>Dropdown:</label>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
             <input type="submit" value="Cancel">
             <button>Login</button>
         </form>
     </section>
-    <section id="paragraf" class="col-">
+    <section id="paragraf">
         <h1>Pertemuan 2</h1>
         <h2>HTML Dasar</h2>
         <p>Pertemuan 2, dasar HTML membuat paragraf sederhana dengan huruf <i>miring</i>, <b>tebal</b></p>
@@ -123,7 +162,7 @@
             <li>Dua</li>
         </ol>
     </section>
-    <section id="table" class="col-">
+    <section id="table">
         <h2>Table</h2>
         <table>
             <thead>
