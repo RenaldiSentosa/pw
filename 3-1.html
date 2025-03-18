@@ -1,147 +1,80 @@
-<!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pertemuan 3 - Styling dengan CSS</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #e0e0e0; /* Abu-abu muda */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  <title> Pertemuan 3 Styling dengan CSS </title>
+<style>
+input{
+  width:80%;
+  background:purple; rapihkan dan buat agar lebih menarik 
+}  
+#username{ background:green;}
+.bg-grey{ background:grey;}
+  
+@media screen and (max-width: 700px) {
+[class*='col-'] { width: 50%; }
+}
+@media screen and (max-width: 450px) {
+[class*='col-'] { width: 100%; }
+}
 
-    header {
-      background: #757575; /* Abu-abu */
-      padding: 15px;
-      text-align: center;
-      width: 100%;
-    }
 
-    header a {
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-    }
+</style>
 
-    main {
-      padding: 20px;
-      text-align: center;
-    }
-
-    section {
-      width: 90%;
-      max-width: 500px;
-      background: #bdbdbd; /* Abu-abu medium */
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      text-align: center;
-      color: #424242; /* Abu-abu gelap */
-    }
-
-    form label {
-      display: block;
-      font-weight: bold;
-      margin-top: 10px;
-      color: #424242; /* Abu-abu gelap */
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #9e9e9e; /* Abu-abu medium */
-      font-size: 16px;
-      background: #eeeeee; /* Abu-abu sangat muda */
-      color: #424242; /* Abu-abu gelap */
-    }
-
-    #username {
-      background: #9e9e9e; /* Abu-abu medium */
-      color: white;
-      border: none;
-    }
-
-    .bg-grey {
-      background: #757575; /* Abu-abu */
-      color: white;
-      border: none;
-    }
-
-    button {
-      background: #616161; /* Abu-abu gelap */
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #424242; /* Abu-abu lebih gelap */
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #757575; /* Abu-abu */
-      color: white;
-      width: 100%;
-      position: relative;
-      bottom: 0;
-    }
-
-    @media screen and (max-width: 450px) {
-      section {
-        width: 95%;
-      }
-    }
-  </style>
 </head>
-<body>
+  <body>
+<header><a href="ipwija.ac.id"> Home </a></header>
+<main> hi 
+<br/> 
+</main id="main" class="main">    
+<section>Halo Word</section>
 
-  <header>
-    <a href="https://ipwija.ac.id">Home</a>
-  </header>
+    <section id="gambar">
+    <img src="edu.png" height="200" width="200">  
+    </section>
 
-  <main>
-    <h1>Form Login</h1>
-  </main>
+    <section id="form" class="col-">
+      <form>
+<label>Username:</label><input id="username" type="text">
+<label>Password:</label><input class="bg-grey" type="password">
+<label>Warna:</label><input class="bg-grey" type="color">
+<label>Dropdown:</label>
+        <select>
+          <option>1</option>
+          <option>2</option>
+        </select>
+<input type="submit" value="cancel">
+        <button> login</button>
+      </form>
+    </section>
 
-  <section id="form">
-    <h2>Login</h2>
-    <form>
-      <label for="username">Username:</label>
-      <input id="username" type="text">
+    <section id="paragraf" class="col-">
+<p>
+<h1> Pertemuan 2</h1>  
+<h2> HTML dasar </h2>
+pertemuan 2, dasar HTML membuat paragraf <br/> sederhana dengan huruf <i>miring </i>,<b>Tebal</b>
+</p>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+  </ul>
+  <ol>
+    <li>satu</li>
+    <li>dua</li>
+  </ol>
+</section>
+<section id="table" class="col-">
+<h2>table</h2>
+<table border="1">
+<thead>
+  <tr><th>jan </th><th>feb </th></tr>
+</thead>  
+<tbody>
+<tr><td>1 </td><td>2 </td></tr>
+<tr><td>3 </td><td>4 </td></tr>
+</tbody>
+</table>
+</section>
 
-      <label for="password">Password:</label>
-      <input id="password" class="bg-grey" type="password">
-
-      <label for="warna">Warna Favorit:</label>
-      <input id="warna" class="bg-grey" type="color">
-
-      <label for="dropdown">Pilih Opsi:</label>
-      <select id="dropdown">
-        <option>1</option>
-        <option>2</option>
-      </select>
-
-      <button type="submit">Login</button>
-    </form>
-  </section>
-
-  <footer>@2025</footer>
-
-</body>
+        
+<footer>@2025</footer>    
+  </body>
 </html>
