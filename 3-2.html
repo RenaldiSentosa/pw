@@ -11,12 +11,16 @@
             color: #333;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         header, footer {
             background-color: purple;
             padding: 10px;
             color: white;
             text-align: center;
+            width: 100%;
         }
         a {
             color: white;
@@ -26,10 +30,17 @@
             margin: 20px;
             text-align: center;
         }
-        section {
-            margin: 20px auto;
+        /* Menggunakan grid untuk membagi konten */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
             padding: 20px;
-            max-width: 800px;
+        }
+        section {
+            padding: 20px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -40,9 +51,9 @@
             align-items: center;
         }
         .form-group {
-            width: 100%;
             display: flex;
             align-items: center;
+            width: 100%;
             margin: 5px 0;
         }
         .form-group label {
@@ -75,14 +86,12 @@
             padding: 10px;
             text-align: center;
         }
-        /* Warna untuk header tabel */
         th {
-            background-color: #6a0dad; /* Ungu */
+            background-color: #6a0dad;
             color: white;
         }
-        /* Warna untuk angka 1 dan 2 */
         tbody tr:first-child td {
-            background-color: #d8bfd8; /* Ungu muda */
+            background-color: #d8bfd8;
         }
         @media screen and (max-width: 700px) {
             .form-group {
@@ -106,92 +115,94 @@
     <main>
         <h2>Hi</h2>
     </main>
-    <section>
-        <h3>Halo World</h3>
-    </section>
-    <section id="gambar">
-        <img src="https://i.pinimg.com/736x/71/d7/d7/71d7d7ddb817cc2e946aa648feab2d2b.jpg" height="400" width="200" alt="Edu Image">
-    </section>
-    <section id="form">
-        <form>
-            <div class="form-group">
-                <label>Username:</label>
-                <input id="username" type="text">
-            </div>
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password">
-            </div>
-            <div class="form-group">
-                <label>Warna:</label>
-                <input type="color">
-            </div>
-            <div class="form-group">
-                <label>Tanggal:</label>
-                <input type="date">
-            </div>
-            <div class="form-group">
-                <label>Upload File:</label>
-                <input type="file">
-            </div>
-            <div class="form-group">
-                <label>Pilih Opsi:</label>
-                <input type="checkbox"> Centang Saya
-            </div>
-            <div class="form-group">
-                <label></label>
-                <input type="radio" name="pilihan" value="1"> Opsi 1
-                <input type="radio" name="pilihan" value="2"> Opsi 2
-            </div>
-            <div class="form-group">
-                <label>Cari:</label>
-                <input type="search" placeholder="Cari sesuatu...">
-            </div>
-            <div class="form-group">
-                <label>Dropdown:</label>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                </select>
-            </div>
-            <input type="submit" value="Cancel">
-            <button>Login</button>
-        </form>
-    </section>
-    <section id="paragraf">
-        <h1>Pertemuan 2</h1>
-        <h2>HTML Dasar</h2>
-        <p>Pertemuan 2, dasar HTML membuat paragraf sederhana dengan huruf <i>miring</i>, <b>tebal</b></p>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-        </ul>
-        <ol>
-            <li>Satu</li>
-            <li>Dua</li>
-        </ol>
-    </section>
-    <section id="table">
-        <h2>Table</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Jan</th>
-                    <th>Feb</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <div class="container">
+        <section>
+            <h3>Halo World</h3>
+        </section>
+        <section id="gambar">
+            <img src="https://i.pinimg.com/736x/71/d7/d7/71d7d7ddb817cc2e946aa648feab2d2b.jpg" height="400" width="200" alt="Edu Image">
+        </section>
+        <section id="form">
+            <form>
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input id="username" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password">
+                </div>
+                <div class="form-group">
+                    <label>Warna:</label>
+                    <input type="color">
+                </div>
+                <div class="form-group">
+                    <label>Tanggal:</label>
+                    <input type="date">
+                </div>
+                <div class="form-group">
+                    <label>Upload File:</label>
+                    <input type="file">
+                </div>
+                <div class="form-group">
+                    <label>Pilih Opsi:</label>
+                    <input type="checkbox"> Centang Saya
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input type="radio" name="pilihan" value="1"> Opsi 1
+                    <input type="radio" name="pilihan" value="2"> Opsi 2
+                </div>
+                <div class="form-group">
+                    <label>Cari:</label>
+                    <input type="search" placeholder="Cari sesuatu...">
+                </div>
+                <div class="form-group">
+                    <label>Dropdown:</label>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+                <input type="submit" value="Cancel">
+                <button>Login</button>
+            </form>
+        </section>
+        <section id="paragraf">
+            <h1>Pertemuan 2</h1>
+            <h2>HTML Dasar</h2>
+            <p>Pertemuan 2, dasar HTML membuat paragraf sederhana dengan huruf <i>miring</i>, <b>tebal</b></p>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+            </ul>
+            <ol>
+                <li>Satu</li>
+                <li>Dua</li>
+            </ol>
+        </section>
+        <section id="table">
+            <h2>Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jan</th>
+                        <th>Feb</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
     <footer>
         &copy; 2025
     </footer>
