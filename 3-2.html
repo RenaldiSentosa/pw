@@ -34,6 +34,37 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-group {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .form-group label {
+            width: 30%;
+            text-align: right;
+            padding-right: 10px;
+        }
+        .form-group input, .form-group select {
+            width: 65%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"], button {
+            width: 100%;
+            background-color: purple;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -44,14 +75,14 @@
             padding: 10px;
             text-align: center;
         }
-        /* Warna untuk Header Table */
+        /* Warna untuk header tabel */
         th {
             background-color: #6a0dad; /* Ungu */
             color: white;
         }
         /* Warna untuk angka 1 dan 2 */
-        td:nth-child(1), td:nth-child(2) {
-            background-color: #d8bfd8; /* Ungu Muda */
+        tbody tr:first-child td {
+            background-color: #d8bfd8; /* Ungu muda */
         }
         @media screen and (max-width: 700px) {
             .form-group {
@@ -75,6 +106,58 @@
     <main>
         <h2>Hi</h2>
     </main>
+    <section>
+        <h3>Halo World</h3>
+    </section>
+    <section id="gambar">
+        <img src="https://i.pinimg.com/736x/71/d7/d7/71d7d7ddb817cc2e946aa648feab2d2b.jpg" height="400" width="200" alt="Edu Image">
+    </section>
+    <section id="form">
+        <form>
+            <div class="form-group">
+                <label>Username:</label>
+                <input id="username" type="text">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password">
+            </div>
+            <div class="form-group">
+                <label>Warna:</label>
+                <input type="color">
+            </div>
+            <div class="form-group">
+                <label>Tanggal:</label>
+                <input type="date">
+            </div>
+            <div class="form-group">
+                <label>Upload File:</label>
+                <input type="file">
+            </div>
+            <div class="form-group">
+                <label>Pilih Opsi:</label>
+                <input type="checkbox"> Centang Saya
+            </div>
+            <div class="form-group">
+                <label></label>
+                <input type="radio" name="pilihan" value="1"> Opsi 1
+                <input type="radio" name="pilihan" value="2"> Opsi 2
+            </div>
+            <div class="form-group">
+                <label>Cari:</label>
+                <input type="search" placeholder="Cari sesuatu...">
+            </div>
+            <div class="form-group">
+                <label>Dropdown:</label>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+            <input type="submit" value="Cancel">
+            <button>Login</button>
+        </form>
+    </section>
     <section id="paragraf">
         <h1>Pertemuan 2</h1>
         <h2>HTML Dasar</h2>
