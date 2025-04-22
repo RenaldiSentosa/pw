@@ -121,10 +121,25 @@
   </div>
 
   <script>
+    const kontenList = [
+      "Konten 1: Selamat datang di situs kami!",
+      "Konten 2: JavaScript memudahkan manipulasi DOM.",
+      "Konten 3: Ubah gaya, teks, dan animasi dengan mudah.",
+      "Konten 4: Gunakan event listener untuk interaksi.",
+      "Konten 5: Terima kasih telah berkunjung!"
+    ];
+
+    let currentIndex = 0;
+
     function changeContent() {
       const content = document.getElementById('dynamicContent');
-      content.innerHTML = 'Konten telah diperbarui!';
-      content.classList.toggle('highlight');
+      currentIndex = (currentIndex + 1) % kontenList.length;
+      content.innerHTML = kontenList[currentIndex];
+      content.classList.add('highlight');
+
+      setTimeout(() => {
+        content.classList.remove('highlight');
+      }, 500); // animasi hilang setelah 0.5 detik
     }
 
     function toggleVisibility() {
