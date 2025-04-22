@@ -115,7 +115,14 @@
 
     <form onsubmit="validateForm(event)">
       <label for="name">Nama:</label>
-      <input type="text" id="name" name="name" required />
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        required 
+        oninvalid="this.setCustomValidity('Nama tidak boleh kosong!')" 
+        oninput="this.setCustomValidity('')"
+      />
       <button type="submit">Kirim</button>
     </form>
   </div>
@@ -139,7 +146,7 @@
 
       setTimeout(() => {
         content.classList.remove('highlight');
-      }, 500); // animasi hilang setelah 0.5 detik
+      }, 500);
     }
 
     function toggleVisibility() {
@@ -154,12 +161,13 @@
 
     function validateForm(event) {
       event.preventDefault();
-      const name = document.getElementById('name').value;
-      if (name.trim() === '') {
+      const name = document.getElementById('name');
+      if (name.value.trim() === '') {
         alert('Nama tidak boleh kosong!');
-      } else {
-        alert('Formulir berhasil dikirim!');
+        name.focus();
+        return;
       }
+      alert('Formulir berhasil dikirim!');
     }
   </script>
 
