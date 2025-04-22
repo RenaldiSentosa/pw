@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Interaksi DOM</title>
+  <title>Contoh Interaksi DOM</title>
   <style>
     #kotak {
       width: 100px;
@@ -11,6 +11,7 @@
       opacity: 0;
       transition: opacity 2s ease-in;
     }
+
     #box {
       padding: 20px;
       background-color: lightgray;
@@ -33,12 +34,12 @@
   <p id="box">Kotak</p>
   <button onclick="ubahStyle()">Ubah Warna</button>
 
-  <!-- Fade In Box -->
+  <!-- Fade In -->
   <br><br>
   <div id="kotak"></div>
   <button onclick="fadeIn()">Tampilkan</button>
 
-  <!-- Validasi Form -->
+  <!-- Form Validasi -->
   <br><br>
   <form onsubmit="return validasiForm()">
     Nama: <input type="text" id="nama"><br>
