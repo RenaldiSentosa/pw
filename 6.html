@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Interaksi DOM</title>
+  <style>
+    #kotak {
+      width: 100px;
+      height: 100px;
+      background-color: coral;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+    }
+    #box {
+      padding: 20px;
+      background-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ubah Teks -->
+  <p id="teks">Teks awal.</p>
+  <button onclick="ubahKonten()">Ubah Teks</button>
+
+  <!-- Ganti Gambar -->
+  <br><br>
+  <img id="gambar" src="gambar1.jpg" width="200">
+  <button onclick="gantiGambar()">Ganti Gambar</button>
+
+  <!-- Ubah Style -->
+  <br><br>
+  <p id="box">Kotak</p>
+  <button onclick="ubahStyle()">Ubah Warna</button>
+
+  <!-- Fade In Box -->
+  <br><br>
+  <div id="kotak"></div>
+  <button onclick="fadeIn()">Tampilkan</button>
+
+  <!-- Validasi Form -->
+  <br><br>
+  <form onsubmit="return validasiForm()">
+    Nama: <input type="text" id="nama"><br>
+    <button type="submit">Kirim</button>
+  </form>
+
+  <script>
+    function ubahKonten() {
+      document.getElementById("teks").innerHTML = "Teks sudah berubah!";
+    }
+
+    function gantiGambar() {
+      document.getElementById("gambar").src = "gambar2.jpg";
+    }
+
+    function ubahStyle() {
+      let box = document.getElementById("box");
+      box.style.backgroundColor = "lightblue";
+      box.style.fontWeight = "bold";
+    }
+
+    function fadeIn() {
+      document.getElementById("kotak").style.opacity = 1;
+    }
+
+    function validasiForm() {
+      let nama = document.getElementById("nama").value;
+      if (nama.trim() === "") {
+        alert("Nama tidak boleh kosong!");
+        return false;
+      }
+      return true;
+    }
+  </script>
+
+</body>
+</html>
