@@ -2,49 +2,123 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Contoh Interaksi DOM</title>
+  <title>Interaksi DOM</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #box {
+      padding: 20px;
+      background-color: lightgray;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
     #kotak {
       width: 100px;
       height: 100px;
       background-color: coral;
       opacity: 0;
       transition: opacity 2s ease-in;
+      margin-top: 10px;
+      border-radius: 5px;
     }
 
-    #box {
-      padding: 20px;
-      background-color: lightgray;
+    img {
+      display: block;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    form {
+      margin-top: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ubah Teks -->
-  <p id="teks">Teks awal.</p>
-  <button onclick="ubahKonten()">Ubah Teks</button>
+  <div class="container">
+    <h1>Interaksi DOM</h1>
 
-  <!-- Ganti Gambar -->
-  <br><br>
-  <img id="gambar" src="gambar1.jpg" width="200">
-  <button onclick="gantiGambar()">Ganti Gambar</button>
+    <!-- Ubah Teks -->
+    <section>
+      <p id="teks">Teks awal.</p>
+      <button onclick="ubahKonten()">Ubah Teks</button>
+    </section>
 
-  <!-- Ubah Style -->
-  <br><br>
-  <p id="box">Kotak</p>
-  <button onclick="ubahStyle()">Ubah Warna</button>
+    <!-- Ganti Gambar -->
+    <section>
+      <img id="gambar" src="gambar1.jpg" width="200" alt="Gambar">
+      <button onclick="gantiGambar()">Ganti Gambar</button>
+    </section>
 
-  <!-- Fade In -->
-  <br><br>
-  <div id="kotak"></div>
-  <button onclick="fadeIn()">Tampilkan</button>
+    <!-- Ubah Style -->
+    <section>
+      <p id="box">Kotak</p>
+      <button onclick="ubahStyle()">Ubah Warna</button>
+    </section>
 
-  <!-- Form Validasi -->
-  <br><br>
-  <form onsubmit="return validasiForm()">
-    Nama: <input type="text" id="nama"><br>
-    <button type="submit">Kirim</button>
-  </form>
+    <!-- Fade In Box -->
+    <section>
+      <div id="kotak"></div>
+      <button onclick="fadeIn()">Tampilkan</button>
+    </section>
+
+    <!-- Validasi Form -->
+    <section>
+      <form onsubmit="return validasiForm()">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" placeholder="Masukkan nama">
+        <button type="submit">Kirim</button>
+      </form>
+    </section>
+  </div>
 
   <script>
     function ubahKonten() {
@@ -56,7 +130,7 @@
     }
 
     function ubahStyle() {
-      let box = document.getElementById("box");
+      const box = document.getElementById("box");
       box.style.backgroundColor = "lightblue";
       box.style.fontWeight = "bold";
     }
@@ -66,7 +140,7 @@
     }
 
     function validasiForm() {
-      let nama = document.getElementById("nama").value;
+      const nama = document.getElementById("nama").value;
       if (nama.trim() === "") {
         alert("Nama tidak boleh kosong!");
         return false;
