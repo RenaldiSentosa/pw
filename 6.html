@@ -2,150 +2,89 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Interaksi DOM</title>
+  <title>Multi Ganti Konten</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-
-    section {
-      margin-bottom: 30px;
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    #box {
-      padding: 20px;
-      background-color: lightgray;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-
     #kotak {
-      width: 100px;
+      width: 200px;
       height: 100px;
-      background-color: coral;
-      opacity: 0;
-      transition: opacity 2s ease-in;
-      margin-top: 10px;
-      border-radius: 5px;
+      margin: 20px 0;
+      text-align: center;
+      line-height: 100px;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
     }
 
     img {
-      display: block;
-      margin-top: 10px;
+      width: 200px;
       border-radius: 10px;
-    }
-
-    form {
-      margin-top: 10px;
-    }
-
-    input[type="text"] {
-      padding: 8px;
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 5px;
       margin-bottom: 10px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Interaksi DOM</h1>
+  <!-- Teks -->
+  <p id="teks">Teks awal</p>
+  <button onclick="gantiTeks()">Ganti Teks</button>
 
-    <!-- Ubah Teks -->
-    <section>
-      <p id="teks">Teks awal.</p>
-      <button onclick="ubahKonten()">Ubah Teks</button>
-    </section>
+  <!-- Gambar -->
+  <img id="gambar" src="gambar1.jpg" alt="Gambar">
+  <button onclick="gantiGambar()">Ganti Gambar</button>
 
-    <!-- Ganti Gambar -->
-    <section>
-      <img id="gambar" src="gambar1.jpg" width="200" alt="Gambar">
-      <button onclick="gantiGambar()">Ganti Gambar</button>
-    </section>
-
-    <!-- Ubah Style -->
-    <section>
-      <p id="box">Kotak</p>
-      <button onclick="ubahStyle()">Ubah Warna</button>
-    </section>
-
-    <!-- Fade In Box -->
-    <section>
-      <div id="kotak"></div>
-      <button onclick="fadeIn()">Tampilkan</button>
-    </section>
-
-    <!-- Validasi Form -->
-    <section>
-      <form onsubmit="return validasiForm()">
-        <label for="nama">Nama:</label>
-        <input type="text" id="nama" placeholder="Masukkan nama">
-        <button type="submit">Kirim</button>
-      </form>
-    </section>
-  </div>
+  <!-- Warna dan teks di kotak -->
+  <div id="kotak" style="background-color: red;">Kotak 1</div>
+  <button onclick="gantiKotak()">Ganti Warna & Teks Kotak</button>
 
   <script>
-    function ubahKonten() {
-      document.getElementById("teks").innerHTML = "Teks sudah berubah!";
+    const teksList = [
+      "Teks awal",
+      "Teks kedua",
+      "Teks ketiga",
+      "Teks keempat",
+      "Teks kelima"
+    ];
+
+    const gambarList = [
+      "gambar1.jpg",
+      "gambar2.jpg",
+      "gambar3.jpg",
+      "gambar4.jpg",
+      "gambar5.jpg"
+    ];
+
+    const warnaList = [
+      { warna: "red", label: "Kotak 1" },
+      { warna: "green", label: "Kotak 2" },
+      { warna: "blue", label: "Kotak 3" },
+      { warna: "orange", label: "Kotak 4" },
+      { warna: "purple", label: "Kotak 5" }
+    ];
+
+    let indexTeks = 0;
+    let indexGambar = 0;
+    let indexWarna = 0;
+
+    function gantiTeks() {
+      indexTeks = (indexTeks + 1) % teksList.length;
+      document.getElementById("teks").innerText = teksList[indexTeks];
     }
 
     function gantiGambar() {
-      document.getElementById("gambar").src = "gambar2.jpg";
+      indexGambar = (indexGambar + 1) % gambarList.length;
+      document.getElementById("gambar").src = gambarList[indexGambar];
     }
 
-    function ubahStyle() {
-      const box = document.getElementById("box");
-      box.style.backgroundColor = "lightblue";
-      box.style.fontWeight = "bold";
-    }
-
-    function fadeIn() {
-      document.getElementById("kotak").style.opacity = 1;
-    }
-
-    function validasiForm() {
-      const nama = document.getElementById("nama").value;
-      if (nama.trim() === "") {
-        alert("Nama tidak boleh kosong!");
-        return false;
-      }
-      return true;
+    function gantiKotak() {
+      indexWarna = (indexWarna + 1) % warnaList.length;
+      const kotak = document.getElementById("kotak");
+      kotak.style.backgroundColor = warnaList[indexWarna].warna;
+      kotak.innerText = warnaList[indexWarna].label;
     }
   </script>
 
