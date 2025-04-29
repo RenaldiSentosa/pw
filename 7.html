@@ -205,25 +205,152 @@
       </div>
     </section>
 
-    
     <section id="product">
-      <h2>Produk Kami</h2>
-      <p>Ini adalah halaman produk. Daftar aplikasi dan fitur akan ditampilkan di sini.</p>
+      <div class="product-layout" style="display: flex; flex-wrap: wrap; gap: 30px; background: white; padding: 30px;">
+        <div class="product-info" style="flex: 1; min-width: 250px;">
+          <h3>Paket Free Stokbarang</h3>
+          <p>Produk yang bisa disimpan maksimal 10 item<br />
+            Demo | Download | Manual Book | Video Tutorial
+          </p>
+          <hr />
+          <h3>Paket Unlimited</h3>
+          <p>Input data tidak dibatasi<br />Order</p>
+          <hr />
+          <h3>Paket Training</h3>
+          <p>
+            Training aplikasi Stokbarang.<br />
+            Biaya: Rp75.000/jam/orang.<br />
+            Lama training: minimal 2 jam.<br />
+            Waktu dan tempat: disesuaikan.<br />
+            Peserta: minimal 2 orang.<br />
+            Modul Training: Buku dan CD aplikasi
+          </p>
+        </div>
+
+        <div class="product-info" style="flex: 2; min-width: 300px;">
+          <h3>Harga dan Perbandingan Paket</h3>
+          <p>Modul Aplikasi yang tersedia pada masing-masing Paket.</p>
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <thead>
+              <tr style="background: #f8f8f8;">
+                <th style="border: 1px solid #ddd; padding: 8px;">Details</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Inventory</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Penjualan</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Mini Market</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Akuntansi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="border: 1px solid #ddd; padding: 8px;">Harga</td><td>Rp.100.000</td><td>Rp.150.000</td><td>Rp.200.000</td><td>Rp.250.000</td></tr>
+              <tr><td>Lokasi</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Keluar</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Masuk</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Laporan Distribusi</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Kontak</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Beli</td><td></td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Jual</td><td></td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Tagihan</td><td></td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Laporan Transaksi</td><td></td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Kasir</td><td></td><td></td><td>✓</td><td>✓</td></tr>
+              <tr><td>Akun</td><td></td><td></td><td></td><td>✓</td></tr>
+              <tr><td>Persamaan</td><td></td><td></td><td></td><td>✓</td></tr>
+              <tr><td>Posting</td><td></td><td></td><td></td><td>✓</td></tr>
+              <tr><td>Jurnal</td><td></td><td></td><td></td><td>✓</td></tr>
+              <tr><td>Buku Besar</td><td></td><td></td><td></td><td>✓</td></tr>
+              <tr><td>Laporan Keuangan</td><td></td><td></td><td></td><td>✓</td></tr>
+            </tbody>
+          </table>
+          <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+            <button style="background: black; color: white; padding: 8px 16px; border: none;">Order</button>
+            <button style="background: black; color: white; padding: 8px 16px; border: none;">Order</button>
+            <button style="background: black; color: white; padding: 8px 16px; border: none;">Order</button>
+            <button style="background: black; color: white; padding: 8px 16px; border: none;">Order</button>
+          </div>
+        </div>
+      </div>
     </section>
 
-   
     <section id="order">
       <h2>Order</h2>
-      <p>Silakan hubungi kami atau isi formulir pemesanan di halaman ini.</p>
+      <div class="order-section">
+        <div class="info-box">
+            <h3>Order Paket Unlimited</h3>
+            <p>Informasi<br>
+            Download aplikasi stokbarang free, Produk yang bisa disimpan paling banyak 10 item.<br>
+            Jika sesuai dengan yang anda butuhkan, anda bisa upgrade ke Paket Unlimited.</p>
+
+            <p><strong>1. Lakukan Pembayaran</strong><br>
+            Transfer Pembayaran ke<br>
+            BCA : 528 036 0048<br>
+            a/n : Wawan Sismadi</p>
+
+            <p><strong>2. Konfirmasi Pembayaran</strong><br>
+            Kirim SMS ke 087885973237<br>
+            atau email ke sales@sismadi.co.id<br>
+            dengan menyertakan nama pemilik rekening, email dan nama paket.<br>
+            Kode aktivasi dikirim melalui email setelah kami terima pembayaran.</p>
+        </div>
+
+        <div class="form-box">
+            <h3>Order Form</h3>
+            <form>
+                <input type="text" name="nama" placeholder="Nama *" required>
+                <input type="email" name="email" placeholder="Email *" required>
+                <input type="text" name="paket" placeholder="Paket *" required>
+                <input type="text" name="inventory" placeholder="Inventory">
+                <input type="text" name="harga" placeholder="Harga">
+                <input type="text" name="kodeunik" placeholder="Kode Unik">
+                <input type="text" name="jumlah" placeholder="Jumlah Yang Dibayar *" required>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+</div>
     </section>
 
-    
     <section id="payment">
       <h2>Payment</h2>
-      <p>Informasi pembayaran tersedia setelah Anda melakukan pemesanan.</p>
+      <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <!-- Kolom kiri: Informasi Pembayaran -->
+        <div style="flex: 1; min-width: 300px; margin-right: 20px;">
+          <h3>Payment Confirmation Form</h3>
+          <p>
+            <strong>Informasi</strong><br>
+            Download aplikasi stokbarang free, Produk yang bisa disimpan paling banyak 10 item.<br>
+            Jika sesuai dengan yang anda butuhkan, anda bisa upgrade ke Paket Unlimited.
+          </p>
+          <p>
+            <strong>1. Lakukan Pembayaran</strong><br>
+            Transfer Pembayaran ke:<br>
+            <strong>BCA : 628 036 0048</strong><br>
+            a/n : Wawan Sismadi
+          </p>
+          <p>
+            <strong>2. Konfirmasi Pembayaran</strong><br>
+            Kirim SMS ke <strong>087885073737</strong><br>
+            atau email ke <strong>konfirmasi@sismadi.co.id</strong><br>
+            dengan menyertakan nama pemilik rekening, email dan nama paket.<br>
+            Kode aktivasi dikirim melalui email setelah kami terima pembayaran.
+          </p>
+        </div>
+    
+        <!-- Kolom kanan: Formulir Konfirmasi -->
+        <div style="flex: 1; min-width: 300px;">
+          <h3>Konfirmasi Pembayaran</h3>
+          <form>
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+    
+            <label for="jumlah">Jumlah Dibayarkan *</label>
+            <input type="text" id="jumlah" name="jumlah" required style="width: 100%; padding: 8px; margin-bottom: 20px;" />
+    
+            <button type="submit" style="padding: 10px 20px; background-color: black; color: white; border: none; cursor: pointer;">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
     </section>
 
-    
     <section id="contact">
       <h2>Contact</h2>
       <div class="contact-container">
