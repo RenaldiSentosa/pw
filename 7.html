@@ -5,18 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piawai - Home & Contact</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: #e3f3ff;
+    * {
+      box-sizing: border-box;
     }
 
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e3f3ff;
+      color: #333;
+    }
+
+    
     header {
       background: #000;
       color: #fff;
       display: flex;
       justify-content: space-between;
-      padding: 10px 20px;
+      padding: 15px 20px;
       align-items: center;
     }
 
@@ -29,7 +35,7 @@
     nav ul {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
       margin: 0;
       padding: 0;
     }
@@ -37,40 +43,78 @@
     nav a {
       text-decoration: none;
       color: white;
+      font-size: 16px;
       cursor: pointer;
     }
 
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    .container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: #f2f2f2;
+      padding: 20px;
+      border-right: 1px solid #ccc;
+      min-height: 100vh;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #333;
+      margin: 10px 0;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: #0077cc;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+    }
+
+    
     section {
       display: none;
-      padding: 40px 20px;
     }
 
     section.active {
       display: block;
     }
 
-    /* Home */
     .hero {
+      background-color: #dceff9;
+      padding: 30px;
       display: flex;
       justify-content: space-between;
-      background-color: #dceff9;
     }
 
     .hero-text h1 {
-      font-size: 48px;
+      font-size: 42px;
       margin: 0;
-      line-height: 1.1;
+      line-height: 1.2;
     }
 
     .hero-image img {
-      max-width: 200px;
-      height: auto;
+      width: 150px;
     }
 
     .features {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       background: #f5f5e0;
+      padding: 30px;
     }
 
     .feature-box {
@@ -78,10 +122,15 @@
       margin: 0 10px;
     }
 
+    .feature-box h3 {
+      margin-top: 0;
+    }
+
     .info {
-      display: flex;
       background: white;
-      gap: 40px;
+      display: flex;
+      gap: 30px;
+      padding: 30px;
     }
 
     .info-box {
@@ -92,18 +141,17 @@
       padding-left: 20px;
     }
 
-    /* Contact */
+
     .contact-container {
       display: flex;
       gap: 40px;
       background: white;
-      padding-top: 20px;
+      padding: 30px;
     }
 
     .contact-info {
       flex: 1;
       border-right: 1px solid #ccc;
-      padding-right: 20px;
     }
 
     .contact-form {
@@ -113,7 +161,7 @@
     input, textarea {
       width: 100%;
       padding: 10px;
-      margin: 8px 0;
+      margin: 8px 0 15px 0;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
@@ -129,9 +177,17 @@
     footer {
       background: #002c46;
       color: white;
-      padding: 10px 20px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
@@ -147,86 +203,98 @@
     </nav>
   </header>
 
-  <!-- Home Section -->
-  <section id="home" class="active">
-    <div class="hero">
-      <div class="hero-text">
-        <h1>Free <br>Enterprise <br>Resource <br>Planning</h1>
-        <p>Gratis Program CMS, LMS, Presensi dan Akuntansi</p>
-        <a href="#">download</a>
-      </div>
-      <div class="hero-image">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Circle-icons-tools.svg/1024px-Circle-icons-tools.svg.png" alt="ERP Icon"/>
-      </div>
+  <div class="container">
+    <!-- Sidebar menu khusus untuk Home -->
+    <div class="sidebar" id="sidebarHome">
+      <h3>Menu</h3>
+      <a href="#free">Free</a>
+      <a href="#unlimited">Unlimited</a>
+      <a href="#customize">Customize</a>
     </div>
 
-    <div class="features">
-      <div class="feature-box">
-        <h3>Free</h3>
-        <p>Sistem Informasi Akademik Sekolah bisa diunduh dan digunakan.<br>
-        + Live Demo<br>+ download<br>+ Download Desktop<br>+ Download without Webserver</p>
-      </div>
-      <div class="feature-box">
-        <h3>Unlimited</h3>
-        <p>Harga Mulai 100.000, Program Komputer siap pakai<br>
-        + Order</p>
-      </div>
-      <div class="feature-box">
-        <h3>Customize</h3>
-        <p>Harga Mulai 1.500.000, Program Komputer disesuaikan.<br>
-        + Hubungi Kami<br>+ download<br>+ Proposal</p>
-      </div>
-    </div>
+    <div class="content">
+      <!-- Home Section -->
+      <section id="home" class="active">
+        <div class="hero">
+          <div class="hero-text">
+            <h1>Free <br>Enterprise <br>Resource <br>Planning</h1>
+            <p>Gratis Program CMS, LMS, Presensi dan Akuntansi</p>
+            <a href="#">download</a>
+          </div>
+          <div class="hero-image">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Circle-icons-tools.svg/1024px-Circle-icons-tools.svg.png" alt="ERP Icon"/>
+          </div>
+        </div>
 
-    <div class="info">
-      <div class="info-box">
-        <h3>News & Events</h3>
-        <p>Sistem Informasi Dagang Berbasis Web</p>
-        <p>Kami siap membantu membuat program yang disesuaikan dengan kebutuhan usaha anda.</p>
-      </div>
-      <div class="info-box">
-        <h3>Selamat Datang di Piawai</h3>
-        <p>Program stokbarang untuk distributor yang memiliki banyak supplier dan customer...</p>
-        <ul>
-          <li>+ Cocok untuk banyak jenis usaha.</li>
-          <li>+ Multi User, Barcode Ready.</li>
-          <li>+ Laporan Keuangan, Akuntansi Dagang dan Jasa.</li>
-          <li>+ Pengingat kadaluarsa & stok minimum.</li>
-          <li>+ Bisa untuk kasir.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+        <div class="features">
+          <div class="feature-box" id="free">
+            <h3>Free</h3>
+            <p>Sistem Informasi Akademik Sekolah bisa diunduh dan digunakan.<br>
+            + Live Demo<br>+ Download<br>+ Download Desktop<br>+ Download without Webserver</p>
+          </div>
+          <div class="feature-box" id="unlimited">
+            <h3>Unlimited</h3>
+            <p>Harga Mulai 100.000, Program Komputer siap pakai<br>
+            + Order</p>
+          </div>
+          <div class="feature-box" id="customize">
+            <h3>Customize</h3>
+            <p>Harga Mulai 1.500.000, Program Komputer disesuaikan.<br>
+            + Hubungi Kami<br>+ Download<br>+ Proposal</p>
+          </div>
+        </div>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-container">
-      <div class="contact-info">
-        <h3>Contact Info</h3>
-        <p>Wawan Sismadi<br>
-        Phone: 087805073237<br>
-        Email: wawan@sismadi.co.id</p>
-      </div>
-      <div class="contact-form">
-        <h3>Contact Form</h3>
-        <p>Jika ada pertanyaan atau informasi lain, silakan hubungi kami:</p>
-        <form>
-          <label>Your Name *</label>
-          <input type="text" required />
-          <label>Your Email *</label>
-          <input type="email" required />
-          <label>Company Name</label>
-          <input type="text" />
-          <label>Subject</label>
-          <input type="text" />
-          <label>Message *</label>
-          <textarea rows="5" required></textarea>
-          <button type="submit" class="submit-btn">Submit</button>
-        </form>
-      </div>
+        <div class="info">
+          <div class="info-box">
+            <h3>News & Events</h3>
+            <p>Sistem Informasi Dagang Berbasis Web</p>
+            <p>Kami siap membantu membuat program yang disesuaikan dengan kebutuhan usaha anda.</p>
+          </div>
+          <div class="info-box">
+            <h3>Selamat Datang di Piawai</h3>
+            <p>Program stokbarang berbasis database untuk distributor dan usaha dagang:</p>
+            <ul>
+              <li>Cocok untuk banyak jenis usaha</li>
+              <li>Multi User & Barcode Ready</li>
+              <li>Laporan Keuangan Dagang dan Jasa</li>
+              <li>Pengingat stok dan kadaluarsa</li>
+              <li>Export ke Excel & Bisa digunakan untuk Kasir</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Contact Info</h3>
+            <p>Renaldi Sentosa<br>
+            Phone: 083898179349<br>
+            Email: sraysany@gmail.com</p>
+          </div>
+          <div class="contact-form">
+            <h3>Contact Form</h3>
+            <p>Silakan hubungi kami jika ada pertanyaan atau kebutuhan khusus.</p>
+            <form>
+              <label>Nama *</label>
+              <input type="text" required />
+              <label>Email *</label>
+              <input type="email" required />
+              <label>Nama Perusahaan</label>
+              <input type="text" />
+              <label>Subjek</label>
+              <input type="text" />
+              <label>Pesan *</label>
+              <textarea rows="5" required></textarea>
+              <button type="submit" class="submit-btn">Kirim</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+  </div>
 
   <footer>
     <p>Piawai</p>
@@ -235,11 +303,18 @@
 
   <script>
     function showSection(id) {
-      document.querySelectorAll('section').forEach(sec => {
-        sec.classList.remove('active');
-      });
+      // Tampilkan hanya section yang dipilih
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+
+      // Tampilkan sidebar hanya untuk home
+      document.getElementById('sidebarHome').style.display = (id === 'home') ? 'block' : 'none';
     }
+
+    // Pastikan sidebar hanya muncul di Home saat awal load
+    window.onload = () => {
+      showSection('home');
+    };
   </script>
 </body>
 </html>
