@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ringkasan Belanja</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        strong {
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Ringkasan Belanja</h2>
+    <ul id="keranjang-belanja"></ul>
+    <p><strong id="total-belanja"></strong></p>
+
+    <script>
+        const keranjang = [
+            { nama: "Buku Tulis", jumlah: 2, harga: 5000 },
+            { nama: "Pulpen", jumlah: 3, harga: 3000 }
+        ];
+
+        const daftar = document.getElementById("keranjang-belanja");
+        const totalEl = document.getElementById("total-belanja");
+
+        let total = 0;
+        keranjang.forEach(item => {
+            const subtotal = item.jumlah * item.harga;
+            total += subtotal;
+
+            const li = document.createElement("li");
+            li.textContent = `${item.jumlah} x ${item.nama} @ Rp${item.harga.toLocaleString('id-ID')}`;
+            daftar.appendChild(li);
+        });
+
+        totalEl.textContent = `Total Belanja: Rp${total.toLocaleString('id-ID')}`;
+    </script>
+</body>
+</html>
