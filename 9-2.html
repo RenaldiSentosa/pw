@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Produk</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Produk Kami</h2>
+    <ul id="daftar-produk"></ul>
+
+    <script>
+        const produk = [
+            { nama: "Produk A", harga: 15000 },
+            { nama: "Produk B", harga: 27500 },
+            { nama: "Produk C", harga: 99000 },
+        ];
+
+        const daftarProduk = document.getElementById("daftar-produk");
+
+        produk.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `${item.nama} - Rp${item.harga.toLocaleString('id-ID')}`;
+            daftarProduk.appendChild(li);
+        });
+    </script>
+</body>
+</html>
