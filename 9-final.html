@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aplikasi Serbaguna</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    .section {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    #todo-input {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    #add-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    #add-button:hover {
+      background-color: #4338ca;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #f9fafb;
+      margin-bottom: 10px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .todo-title {
+      flex-grow: 1;
+      margin-right: 12px;
+    }
+
+    .actions button {
+      margin-left: 8px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .done-btn {
+      background-color: #10b981;
+      color: white;
+    }
+
+    .done-btn:hover {
+      background-color: #059669;
+    }
+
+    .delete-btn {
+      background-color: #ef4444;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background-color: #dc2626;
+    }
+
+    li.produk, li.keranjang {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <h1 id="salam">Selamat datang!</h1>
+  </div>
+
+  <div class="section">
+    <h2>📝 Todo List</h2>
+    <input type="text" id="todo-input" placeholder="Tulis todo baru...">
+    <button id="add-button">Tambah</button>
+    <ul id="todo-list"></ul>
+  </div>
+
+  
+  <div class="section">
+    <h2>📦 Produk Kami</h2>
+    <ul id="daftar-produk"></ul>
+  </div>
+
+  
+  <div class="section">
+    <h2>🛒 Ringkasan Belanja</h2>
+    <ul id="keranjang-belanja"></ul>
+    <p><strong id="total-belanja"></strong></p>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabaseUrl = "https://fcsnwmzrpwsabsqnscwj.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjc253bXpycHdzYWJzcW5zY3dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1MTUwNDUsImV4cCI6MjA2MjA5MTA0NX0.QKBmiZGCbP79v75XE4VTG0TDmGZV-iC2vE0gOzLMeH0";
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const input = document.getElementById("todo-input");
+    const addButton = document.getElementById("add-button");
+    const list = document.getElementById("todo-list");
+
+    async function loadTodos() {
+      const { data, error } = await supabase
+        .from("todos")
+        .select("*")
+        .order("id", { ascending: false });
+
+      if (error) {
+        alert("Gagal memuat todo: " + error.message);
+        return;
+      }
+
+      list.innerHTML = "";
+
+      data.forEach(todo => {
+        const li = document.createElement("li");
+
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "todo-title";
+        titleSpan.textContent = `${todo.title} ${todo.is_complete ? "✅" : ""}`;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const doneBtn = document.createElement("button");
+        doneBtn.className = "done-btn";
+        doneBtn.textContent = todo.is_complete ? "Batal" : "Selesai";
+        doneBtn.onclick = async () => {
+          await supabase.from("todos").update({ is_complete: !todo.is_complete }).eq("id", todo.id);
+          loadTodos();
+        };
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "delete-btn";
+        delBtn.textContent = "Hapus";
+        delBtn.onclick = async () => {
+          await supabase.from("todos").delete().eq("id", todo.id);
+          loadTodos();
+        };
+
+        actions.appendChild(doneBtn);
+        actions.appendChild(delBtn);
+
+        li.appendChild(titleSpan);
+        li.appendChild(actions);
+        list.appendChild(li);
+      });
+    }
+
+    async function addTodo() {
+      const title = input.value.trim();
+      if (!title) {
+        alert("Todo tidak boleh kosong!");
+        return;
+      }
+
+      const { error } = await supabase.from("todos").insert([{ title }]);
+      if (error) {
+        alert("Gagal menambahkan todo: " + error.message);
+        return;
+      }
+
+      input.value = "";
+      loadTodos();
+    }
+
+    addButton.addEventListener("click", addTodo);
+    loadTodos();
+  </script>
+
+  <script>
+   
+    function tampilkanSalam() {
+      const sekarang = new Date();
+      const jam = sekarang.getHours();
+      let salam;
+
+      if (jam >= 5 && jam < 12) {
+        salam = "Selamat Pagi";
+      } else if (jam >= 12 && jam < 18) {
+        salam = "Selamat Siang";
+      } else if (jam >= 18 && jam < 21) {
+        salam = "Selamat Sore";
+      } else {
+        salam = "Selamat Malam";
+      }
+
+      document.getElementById("salam").innerText = `${salam}, Mahasiswa!`;
+    }
+
+    window.onload = tampilkanSalam;
+
+   
+    const produk = [
+      { nama: "Produk A", harga: 15000 },
+      { nama: "Produk B", harga: 27500 },
+      { nama: "Produk C", harga: 99000 },
+    ];
+
+    const daftarProduk = document.getElementById("daftar-produk");
+    produk.forEach(item => {
+      const li = document.createElement("li");
+      li.className = "produk";
+      li.textContent = `${item.nama} - Rp${item.harga.toLocaleString('id-ID')}`;
+      daftarProduk.appendChild(li);
+    });
+
+    
+    const keranjang = [
+      { nama: "Buku Tulis", jumlah: 2, harga: 5000 },
+      { nama: "Pulpen", jumlah: 3, harga: 3000 }
+    ];
+
+    const daftarKeranjang = document.getElementById("keranjang-belanja");
+    const totalEl = document.getElementById("total-belanja");
+
+    let total = 0;
+    keranjang.forEach(item => {
+      const subtotal = item.jumlah * item.harga;
+      total += subtotal;
+
+      const li = document.createElement("li");
+      li.className = "keranjang";
+      li.textContent = `${item.jumlah} x ${item.nama} @ Rp${item.harga.toLocaleString('id-ID')}`;
+      daftarKeranjang.appendChild(li);
+    });
+
+    totalEl.textContent = `Total Belanja: Rp${total.toLocaleString('id-ID')}`;
+  </script>
+</body>
+</html>
