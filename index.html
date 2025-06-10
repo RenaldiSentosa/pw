@@ -4,9 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Renaldi Sentosa</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .profile-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .header-bg {
+      height: 150px;
+      background: linear-gradient(135deg, #4A90E2, #007AFF);
+      border-radius: 12px 12px 0 0;
+    }
+
+    .profile-photo-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: -60px;
+    }
+
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+    }
+
+    .header-text {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .header-text h1 {
+      margin: 10px 0 5px;
+      font-size: 24px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 5px;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .action-buttons button {
+      background-color: #007AFF;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    .action-buttons button:hover {
+      background-color: #005fcb;
+    }
+
+    .content-card {
+      background-color: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    .content-card h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .content-card p {
+      margin: 8px 0 0;
+    }
+
+    a {
+      color: #007AFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+
   <div class="profile-container">
     <div class="header-bg"></div>
 
@@ -17,8 +122,8 @@
     <div class="header-text">
       <h1>Renaldi Sentosa</h1>
       <p class="subtitle">He/Him • Web Developer</p>
-      <p>Jakarta, Indonesia • <a href="https://wawan.sismadi.com" target="_blank">sraysany@gmail.com</a></p>
-      <p><strong>Renaldi Keriting</strong> — Universitas Ipwija</p>
+      <p>Jakarta, Indonesia • <a href="https://Renaldi.Sentosa.com">Renaldi.Sentosa.com</a></p>
+      <p><strong>Renaldi Langit Solusi</strong> — Universitas Ipwija</p>
     </div>
 
     <div class="action-buttons">
@@ -27,7 +132,9 @@
       <button>Enhance profile</button>
     </div>
 
-    <div id="content"></div>
+    <div id="content">
+      <!-- Data dari Supabase akan muncul di sini -->
+    </div>
 
     <div class="content-card">
       <h3>Sosial Media</h3>
@@ -48,26 +155,27 @@
     const content = document.getElementById('content')
 
     async function loadData() {
-  const { data, error } = await supabase.from('web').select('*').order('id')
-  if (error) {
-    alert('Error loading data: ' + error.message)
-    return
-  }
-  content.innerHTML = ''
-  let out = ''
-  data.forEach(row => {
-    out += `
-      <div class="content-card">
-        <h2>${row.Judul}</h2>
-        <p>${row.Isi}</p>
-      </div>
-    `
-  })
-  content.innerHTML = out
-}
+      const { data, error } = await supabase.from('web').select('*').order('id')
+      if (error) {
+        content.innerHTML = `<p style="color:red;">Gagal memuat data: ${error.message}</p>`
+        return
+      }
 
+      content.innerHTML = ''
+      let out = ''
+      data.forEach(row => {
+        out += `
+          <div class="content-card">
+            <h2>${row.Judul}</h2>
+            <p>${row.Isi}</p>
+          </div>
+        `
+      })
+      content.innerHTML = out
+    }
 
     window.addEventListener('DOMContentLoaded', loadData)
   </script>
+
 </body>
 </html>
