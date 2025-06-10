@@ -3,21 +3,73 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CRUD Sederhana Supabase - Prosedural</title>
+<title>Renaldi Sentosa - CRUD Supabase</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 20px; }
-  #crudForm { display: none; border: 1px solid #ccc; padding: 15px; width: 300px; margin-top: 15px; }
-  table { border-collapse: collapse; width: 100%; margin-top: 15px; }
-  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-  tr:hover { background-color: #f9f9f9; cursor: pointer; }
-  button { margin-right: 10px; }
-  #addBtn { margin-bottom: 15px; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px auto;
+    max-width: 800px;
+    background-color: #f4f6f8;
+    color: #333;
+  }
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+  }
+  button {
+    padding: 8px 14px;
+    border: none;
+    background-color: #2980b9;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #3498db;
+  }
+  #addBtn {
+    margin-bottom: 15px;
+  }
+  #crudForm {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  label {
+    font-weight: bold;
+  }
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 </style>
 </head>
 <body>
 
-<h2>CRUD Sederhana dengan Supabase</h2>
-<button id="addBtn">Tambah</button>
+<h2>CRUD Supabase - Renaldi Sentosa</h2>
+<button id="addBtn">Tambah Data</button>
 
 <table>
   <thead>
@@ -29,13 +81,12 @@
 <form id="crudForm">
   <input type="hidden" id="recordId" />
   <div>
-    <label for="nameInput">Judul:</label><br/>
+    <label for="nameInput">Judul:</label>
     <input type="text" id="nameInput" required />
   </div>
   <div style="margin-top:8px;">
-    <label for="emailInput">Isi:</label><br/>
-    <textarea id="emailInput"> </textarea>
-    <!-- <input type="email" id="emailInput" required /> -->
+    <label for="emailInput">Isi:</label>
+    <textarea id="emailInput" required></textarea>
   </div>
   <div style="margin-top:15px;">
     <button type="submit">Simpan</button>
@@ -45,17 +96,13 @@
 </form>
 
 <script type="module">
-// Import Supabase client dari CDN
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
 
 const SUPABASE_URL = 'https://fcsnwmzrpwsabsqnscwj.supabase.co'
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjc253bXpycHdzYWJzcW5zY3dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1MTUwNDUsImV4cCI6MjA2MjA5MTA0NX0.QKBmiZGCbP79v75XE4VTG0TDmGZV-iC2vE0gOzLMeH0'
 
-
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-// Elemen DOM
 const addBtn = document.getElementById('addBtn')
 const dataBody = document.getElementById('dataBody')
 const crudForm = document.getElementById('crudForm')
@@ -65,11 +112,10 @@ const emailInput = document.getElementById('emailInput')
 const deleteBtn = document.getElementById('deleteBtn')
 const cancelBtn = document.getElementById('cancelBtn')
 
-// Fungsi load data ke tabel
 async function loadData() {
   const { data, error } = await supabase.from('web').select('*').order('id')
   if (error) {
-    alert('Error loading data: ' + error.message)
+    alert('Gagal mengambil data: ' + error.message)
     return
   }
   dataBody.innerHTML = ''
@@ -82,7 +128,6 @@ async function loadData() {
   })
 }
 
-// Tampilkan form, isi dengan data jika ada
 function showForm(data = null) {
   if (data) {
     recordIdInput.value = data.id
@@ -98,14 +143,12 @@ function showForm(data = null) {
   nameInput.focus()
 }
 
-// Sembunyikan form
 function hideForm() {
   crudForm.style.display = 'none'
   recordIdInput.value = ''
   crudForm.reset()
 }
 
-// Simpan data (insert/update)
 async function saveData(e) {
   e.preventDefault()
   const id = recordIdInput.value
@@ -113,46 +156,40 @@ async function saveData(e) {
   const isi = emailInput.value.trim()
 
   if (!judul || !isi) {
-    alert('Nama dan Email harus diisi!')
+    alert('Judul dan Isi tidak boleh kosong!')
     return
   }
 
   if (id) {
-    // Update
     const { error } = await supabase.from('web').update({ judul, isi }).eq('id', id)
-    if (error) return alert('Error update: ' + error.message)
+    if (error) return alert('Gagal mengupdate: ' + error.message)
   } else {
-    // Insert
     const { error } = await supabase.from('web').insert([{ judul, isi }])
-    if (error) return alert('Error insert: ' + error.message)
+    if (error) return alert('Gagal menyimpan: ' + error.message)
   }
 
   hideForm()
   loadData()
 }
 
-// Hapus data
 async function deleteData() {
   const id = recordIdInput.value
   if (!id) return
   if (!confirm('Yakin ingin menghapus data ini?')) return
 
   const { error } = await supabase.from('web').delete().eq('id', id)
-  if (error) return alert('Error hapus: ' + error.message)
+  if (error) return alert('Gagal menghapus: ' + error.message)
 
   hideForm()
   loadData()
 }
 
-// Event listeners
 addBtn.addEventListener('click', () => showForm(null))
 crudForm.addEventListener('submit', saveData)
 deleteBtn.addEventListener('click', deleteData)
 cancelBtn.addEventListener('click', hideForm)
 
-// Load data saat halaman siap
 window.addEventListener('DOMContentLoaded', loadData)
-
 </script>
 
 </body>
