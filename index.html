@@ -48,23 +48,24 @@
     const content = document.getElementById('content')
 
     async function loadData() {
-      const { data, error } = await supabase.from('web').select('*').order('id')
-      if (error) {
-        alert('Error loading data: ' + error.message)
-        return
-      }
-      content.innerHTML = ''
-      let out = ''
-      data.forEach(row => {
-        out += `
-          <div class="content-card">
-            <h2>${row.judul || 'Judul Tidak Tersedia'}</h2>
-            <p>${row.isi || 'Isi kosong.'}</p>
-          </div>
-        `
-      })
-      content.innerHTML = out
-    }
+  const { data, error } = await supabase.from('web').select('*').order('id')
+  if (error) {
+    alert('Error loading data: ' + error.message)
+    return
+  }
+  content.innerHTML = ''
+  let out = ''
+  data.forEach(row => {
+    out += `
+      <div class="content-card">
+        <h2>${row.Judul}</h2>
+        <p>${row.Isi}</p>
+      </div>
+    `
+  })
+  content.innerHTML = out
+}
+
 
     window.addEventListener('DOMContentLoaded', loadData)
   </script>
