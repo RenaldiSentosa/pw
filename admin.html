@@ -1,70 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Renaldi Sentosa - CRUD Supabase</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 30px auto;
-    max-width: 800px;
-    background-color: #f4f6f8;
-    color: #333;
-  }
-  h2 {
-    text-align: center;
-    color: #2c3e50;
-  }
-  button {
-    padding: 8px 14px;
-    border: none;
-    background-color: #2980b9;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #3498db;
-  }
-  #addBtn {
-    margin-bottom: 15px;
-  }
-  #crudForm {
-    display: none;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-top: 15px;
-    border-radius: 8px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 15px;
-    background-color: white;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-  }
-  tr:hover {
-    background-color: #f1f1f1;
-  }
-  label {
-    font-weight: bold;
-  }
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 6px;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CRUD Supabase - Renaldi Sentosa</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f8; }
+    h2 { text-align: center; color: #2c3e50; }
+    #crudForm { display: none; border: 1px solid #ccc; padding: 15px; width: 100%; max-width: 600px; margin: 15px auto; background: #fff; border-radius: 6px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 15px; background: #fff; border-radius: 6px; overflow: hidden; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    tr:hover { background-color: #f9f9f9; cursor: pointer; }
+    button { margin: 5px; padding: 8px 12px; border-radius: 4px; border: none; cursor: pointer; }
+    #addBtn { background: #3498db; color: #fff; }
+    #deleteBtn { background: #e74c3c; color: white; }
+    #cancelBtn { background: #7f8c8d; color: white; }
+    #crudForm button[type="submit"] { background: #2ecc71; color: white; }
+  </style>
 </head>
 <body>
 
@@ -81,12 +33,12 @@
 <form id="crudForm">
   <input type="hidden" id="recordId" />
   <div>
-    <label for="nameInput">Judul:</label>
-    <input type="text" id="nameInput" required />
+    <label for="nameInput">Judul:</label><br/>
+    <input type="text" id="nameInput" required style="width: 100%;" />
   </div>
   <div style="margin-top:8px;">
-    <label for="emailInput">Isi:</label>
-    <textarea id="emailInput" required></textarea>
+    <label for="emailInput">Isi:</label><br/>
+    <textarea id="emailInput" rows="4" style="width: 100%;"></textarea>
   </div>
   <div style="margin-top:15px;">
     <button type="submit">Simpan</button>
@@ -98,11 +50,13 @@
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
+// Ganti sesuai project kamu
 const SUPABASE_URL = 'https://fcsnwmzrpwsabsqnscwj.supabase.co'
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjc253bXpycHdzYWJzcW5zY3dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1MTUwNDUsImV4cCI6MjA2MjA5MTA0NX0.QKBmiZGCbP79v75XE4VTG0TDmGZV-iC2vE0gOzLMeH0'
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
+// Elemen DOM
 const addBtn = document.getElementById('addBtn')
 const dataBody = document.getElementById('dataBody')
 const crudForm = document.getElementById('crudForm')
@@ -112,26 +66,28 @@ const emailInput = document.getElementById('emailInput')
 const deleteBtn = document.getElementById('deleteBtn')
 const cancelBtn = document.getElementById('cancelBtn')
 
+// Load data dari Supabase
 async function loadData() {
   const { data, error } = await supabase.from('web').select('*').order('id')
   if (error) {
-    alert('Gagal mengambil data: ' + error.message)
+    alert('Error loading data: ' + error.message)
     return
   }
   dataBody.innerHTML = ''
   data.forEach(row => {
     const tr = document.createElement('tr')
     tr.dataset.id = row.id
-    tr.innerHTML = `<td>${row.id}</td><td>${row.judul}</td><td>${row.isi}</td>`
+    tr.innerHTML = `<td>${row.id}</td><td>${row.Judul}</td><td>${row.isi}</td>`
     tr.addEventListener('click', () => showForm(row))
     dataBody.appendChild(tr)
   })
 }
 
+// Tampilkan form
 function showForm(data = null) {
   if (data) {
     recordIdInput.value = data.id
-    nameInput.value = data.judul
+    nameInput.value = data.Judul
     emailInput.value = data.isi
     deleteBtn.style.display = 'inline-block'
   } else {
@@ -143,53 +99,57 @@ function showForm(data = null) {
   nameInput.focus()
 }
 
+// Sembunyikan form
 function hideForm() {
   crudForm.style.display = 'none'
   recordIdInput.value = ''
   crudForm.reset()
 }
 
+// Simpan (insert/update)
 async function saveData(e) {
   e.preventDefault()
   const id = recordIdInput.value
-  const judul = nameInput.value.trim()
+  const Judul = nameInput.value.trim()
   const isi = emailInput.value.trim()
 
-  if (!judul || !isi) {
-    alert('Judul dan Isi tidak boleh kosong!')
+  if (!Judul || !isi) {
+    alert('Judul dan Isi harus diisi!')
     return
   }
 
   if (id) {
-    const { error } = await supabase.from('web').update({ judul, isi }).eq('id', id)
-    if (error) return alert('Gagal mengupdate: ' + error.message)
+    const { error } = await supabase.from('web').update({ Judul, isi }).eq('id', id)
+    if (error) return alert('Error update: ' + error.message)
   } else {
-    const { error } = await supabase.from('web').insert([{ judul, isi }])
-    if (error) return alert('Gagal menyimpan: ' + error.message)
+    const { error } = await supabase.from('web').insert([{ Judul, isi }])
+    if (error) return alert('Error insert: ' + error.message)
   }
 
   hideForm()
   loadData()
 }
 
+// Hapus data
 async function deleteData() {
   const id = recordIdInput.value
   if (!id) return
   if (!confirm('Yakin ingin menghapus data ini?')) return
 
   const { error } = await supabase.from('web').delete().eq('id', id)
-  if (error) return alert('Gagal menghapus: ' + error.message)
+  if (error) return alert('Error hapus: ' + error.message)
 
   hideForm()
   loadData()
 }
 
+// Event listeners
 addBtn.addEventListener('click', () => showForm(null))
 crudForm.addEventListener('submit', saveData)
 deleteBtn.addEventListener('click', deleteData)
 cancelBtn.addEventListener('click', hideForm)
-
 window.addEventListener('DOMContentLoaded', loadData)
+
 </script>
 
 </body>
