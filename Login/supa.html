@@ -125,25 +125,7 @@
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
   const content = document.getElementById('content')
 
-  // Login langsung default (bisa diaktifkan di awal jika mau auto-login)
-  async function loginDefault() {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: 'user@example.com',     // GANTI EMAIL TERDAFTAR
-      password: 'password123'        // GANTI PASSWORD BENAR
-    })
-
-    if (error) {
-      alert('Login default gagal: ' + error.message)
-      return
-    }
-
-    document.getElementById('login-form').style.display = 'none'
-    document.getElementById('showLoginBtn').style.display = 'none'
-    document.getElementById('logoutBtn').style.display = 'inline-block'
-    loadData()
-  }
-
-  // Login manual via form
+  // Login manual melalui form
   async function login() {
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
@@ -161,6 +143,7 @@
     loadData()
   }
 
+  // Logout
   async function logout() {
     await supabase.auth.signOut()
     content.innerHTML = '<p>Logout berhasil.</p>'
@@ -168,6 +151,7 @@
     document.getElementById('logoutBtn').style.display = 'none'
   }
 
+  // Tampilkan data dari tabel web3
   async function loadData() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) {
@@ -181,7 +165,7 @@
       .order('id', { ascending: true })
 
     if (error) {
-      alert('Error loading data: ' + error.message)
+      alert('Gagal memuat data: ' + error.message)
       return
     }
 
@@ -198,6 +182,7 @@
     content.innerHTML = out
   }
 
+  // Event login & logout
   document.getElementById('showLoginBtn').addEventListener('click', () => {
     document.getElementById('login-form').style.display = 'block'
     document.getElementById('showLoginBtn').style.display = 'none'
@@ -206,16 +191,13 @@
   document.getElementById('loginBtn').addEventListener('click', login)
   document.getElementById('logoutBtn').addEventListener('click', logout)
 
-  // Coba login langsung jika sebelumnya sudah login
+  // Cek apakah user sudah login saat halaman dibuka
   window.addEventListener('DOMContentLoaded', async () => {
     const { data: { user } } = await supabase.auth.getUser()
     if (user) {
       document.getElementById('showLoginBtn').style.display = 'none'
       document.getElementById('logoutBtn').style.display = 'inline-block'
       loadData()
-    } else {
-      // Uncomment baris ini kalau mau login otomatis dengan akun default:
-      // loginDefault()
     }
   })
 </script>
