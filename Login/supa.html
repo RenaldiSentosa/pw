@@ -4,111 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Renaldi Sentosa</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
       margin: 0;
-      background: #f2f5f7;
-      color: #333;
+      padding: 0;
     }
-
     .profile-container {
-      max-width: 800px;
-      margin: 40px auto;
+      max-width: 600px;
+      margin: auto;
       background: white;
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
-
     .header-bg {
-      height: 100px;
-      background: linear-gradient(135deg, #0066cc, #00cc99);
-      border-radius: 12px 12px 0 0;
-      margin: -30px -30px 30px -30px;
+      height: 150px;
+      background: linear-gradient(45deg, #4f46e5, #6d28d9);
+      border-radius: 10px 10px 0 0;
     }
-
     .profile-photo-wrapper {
       text-align: center;
-      margin-top: -50px;
+      margin-top: -60px;
     }
-
     .profile-photo {
-      width: 100px;
-      height: 100px;
+      border: 5px solid white;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 4px solid white;
       object-fit: cover;
     }
-
     .header-text {
       text-align: center;
     }
-
-    .header-text h1 {
-      margin: 10px 0 5px;
-    }
-
     .subtitle {
       color: gray;
-      font-size: 14px;
-      margin-bottom: 10px;
     }
-
     .action-buttons {
       text-align: center;
-      margin: 20px 0;
+      margin-top: 10px;
     }
-
-    button {
-      background: #007bff;
+    .action-buttons button {
+      margin: 5px;
+      padding: 8px 16px;
       border: none;
+      border-radius: 5px;
+      background: #4f46e5;
       color: white;
-      padding: 10px 20px;
-      margin: 0 10px;
-      border-radius: 6px;
       cursor: pointer;
-      font-size: 14px;
     }
-
-    button:hover {
-      background: #0056b3;
+    .action-buttons button:hover {
+      background: #4338ca;
     }
-
     .content-card {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      background: #f9f9f9;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.05);
     }
-
-    .content-card h2 {
-      margin: 0 0 10px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li {
-      margin-bottom: 5px;
-    }
-
     #login-form {
       text-align: center;
-      margin-bottom: 20px;
+      margin-top: 20px;
     }
-
-    input[type="email"], input[type="password"] {
+    #login-form input {
       padding: 8px;
-      width: 80%;
-      max-width: 300px;
-      margin: 5px 0;
-      border-radius: 6px;
+      margin: 5px;
+      border-radius: 5px;
       border: 1px solid #ccc;
     }
-
   </style>
 </head>
 <body>
@@ -121,20 +88,21 @@
 
   <div class="header-text">
     <h1>Renaldi Sentosa</h1>
-    <p class="subtitle">He/Him • Web Developer</p>
+    <p class="subtitle">He/Him • Elit Cees</p>
     <p>Jakarta, Indonesia • <a href="https://wawan.sismadi.com">RenaldiSentosa.com</a></p>
     <p><strong>Renaldi Langit Solusi</strong> — Universitas Ipwija</p>
   </div>
 
   <div class="action-buttons">
-    <button id="logoutBtn">Logout</button>
+    <button id="showLoginBtn">Login untuk akses data</button>
+    <button id="logoutBtn" style="display: none;">Logout</button>
   </div>
 
-  <div id="login-form">
-    <h3>Login untuk melihat data</h3>
-    <input type="email" id="email" placeholder="Email" /><br>
-    <input type="password" id="password" placeholder="Password" /><br>
-    <button id="loginBtn">Login</button>
+  <div id="login-form" style="display: none;">
+    <h3>Masukkan Email & Password</h3>
+    <input type="email" id="email" placeholder="Email"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button id="loginBtn">Login Manual</button>
   </div>
 
   <div id="content"></div>
@@ -149,86 +117,107 @@
 </div>
 
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-const SUPABASE_URL = 'https://fcsnwmzrpwsabsqnscwj.supabase.co'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjc253bXpycHdzYWJzcW5zY3dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1MTUwNDUsImV4cCI6MjA2MjA5MTA0NX0.QKBmiZGCbP79v75XE4VTG0TDmGZV-iC2vE0gOzLMeH0'
+  const SUPABASE_URL = 'https://fcsnwmzrpwsabsqnscwj.supabase.co'
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZjc253bXpycHdzYWJzcW5zY3dqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1MTUwNDUsImV4cCI6MjA2MjA5MTA0NX0.QKBmiZGCbP79v75XE4VTG0TDmGZV-iC2vE0gOzLMeH0'
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-const content = document.getElementById('content')
-const loginForm = document.getElementById('login-form')
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  const content = document.getElementById('content')
 
-async function login() {
-  const email = document.getElementById('email').value
-  const password = document.getElementById('password').value
+  // Login langsung default (bisa diaktifkan di awal jika mau auto-login)
+  async function loginDefault() {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: 'user@example.com',     // GANTI EMAIL TERDAFTAR
+      password: 'password123'        // GANTI PASSWORD BENAR
+    })
 
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) {
+      alert('Login default gagal: ' + error.message)
+      return
+    }
 
-  if (error) {
-    alert('Login gagal: ' + error.message)
-    return
-  }
-
-  loginForm.style.display = 'none'
-  loadData()
-}
-
-async function logout() {
-  await supabase.auth.signOut()
-  content.innerHTML = '<p>Logout berhasil.</p>'
-  loginForm.style.display = 'block'
-}
-
-async function loadData() {
-  const {
-    data: { user },
-    error: userError
-  } = await supabase.auth.getUser()
-
-  if (!user || userError) {
-    content.innerHTML = '<p>Silakan login untuk melihat data.</p>'
-    return
-  }
-
-  const { data, error } = await supabase
-    .from('web3')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('id')
-
-  if (error) {
-    content.innerHTML = '<p>Gagal mengambil data: ' + error.message + '</p>'
-    return
-  }
-
-  if (data.length === 0) {
-    content.innerHTML = '<p>Data kosong.</p>'
-    return
-  }
-
-  let out = ''
-  data.forEach(row => {
-    out += `
-      <div class="content-card">
-        <h2>${row.judul}</h2>
-        <p>${row.isi}</p>
-      </div>
-    `
-  })
-
-  content.innerHTML = out
-}
-
-document.getElementById('loginBtn').addEventListener('click', login)
-document.getElementById('logoutBtn').addEventListener('click', logout)
-
-window.addEventListener('DOMContentLoaded', async () => {
-  const { data: { user } } = await supabase.auth.getUser()
-  if (user) {
-    loginForm.style.display = 'none'
+    document.getElementById('login-form').style.display = 'none'
+    document.getElementById('showLoginBtn').style.display = 'none'
+    document.getElementById('logoutBtn').style.display = 'inline-block'
     loadData()
   }
-})
+
+  // Login manual via form
+  async function login() {
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (error) {
+      alert('Login gagal: ' + error.message)
+      return
+    }
+
+    document.getElementById('login-form').style.display = 'none'
+    document.getElementById('showLoginBtn').style.display = 'none'
+    document.getElementById('logoutBtn').style.display = 'inline-block'
+    loadData()
+  }
+
+  async function logout() {
+    await supabase.auth.signOut()
+    content.innerHTML = '<p>Logout berhasil.</p>'
+    document.getElementById('showLoginBtn').style.display = 'inline-block'
+    document.getElementById('logoutBtn').style.display = 'none'
+  }
+
+  async function loadData() {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      content.innerHTML = '<p>Silakan login untuk melihat data.</p>'
+      return
+    }
+
+    const { data, error } = await supabase
+      .from('web3')
+      .select('*')
+      .order('id', { ascending: true })
+
+    if (error) {
+      alert('Error loading data: ' + error.message)
+      return
+    }
+
+    let out = ''
+    data.forEach(row => {
+      out += `
+        <div class="content-card">
+          <h2>${row.judul}</h2>
+          <p>${row.isi}</p>
+        </div>
+      `
+    })
+
+    content.innerHTML = out
+  }
+
+  document.getElementById('showLoginBtn').addEventListener('click', () => {
+    document.getElementById('login-form').style.display = 'block'
+    document.getElementById('showLoginBtn').style.display = 'none'
+  })
+
+  document.getElementById('loginBtn').addEventListener('click', login)
+  document.getElementById('logoutBtn').addEventListener('click', logout)
+
+  // Coba login langsung jika sebelumnya sudah login
+  window.addEventListener('DOMContentLoaded', async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      document.getElementById('showLoginBtn').style.display = 'none'
+      document.getElementById('logoutBtn').style.display = 'inline-block'
+      loadData()
+    } else {
+      // Uncomment baris ini kalau mau login otomatis dengan akun default:
+      // loginDefault()
+    }
+  })
 </script>
 </body>
 </html>
