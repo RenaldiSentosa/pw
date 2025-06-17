@@ -16,9 +16,9 @@
 
   <div class="header-text">
     <h1>Renaldi Sentosa</h1>
-    <p class="subtitle">He/Him • Web Developer</p>
-    <p>Jakarta, Indonesia • <a href="https://wawan.sismadi.com">wawan.sismadi.com</a></p>
-    <p><strong>Sismadi Langit Solusi</strong> — Universitas Ahmad Dahlan</p>
+    <p class="subtitle">He/Him • Elit Cees</p>
+    <p>Jakarta, Indonesia • <a href="https://wawan.sismadi.com">RenaldiSentosa.com</a></p>
+    <p><strong>Renaldi Langit Solusi</strong> — Universitas Ipwija</p>
   </div>
 
   <div class="action-buttons">
@@ -87,7 +87,7 @@ async function loadData() {
 
 
   const { data, error } = await supabase
-    .from('Web')
+    .from('web3')
     .select('*')
     .order('id')
 
@@ -116,7 +116,7 @@ document.getElementById('logoutBtn').addEventListener('click', logout)
 
 
 window.addEventListener('DOMContentLoaded', async () => {
-  const { data: { Web } } = await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
   if (user) loadData()
 })
 </script>
