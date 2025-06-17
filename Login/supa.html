@@ -116,7 +116,7 @@ document.getElementById('logoutBtn').addEventListener('click', logout)
 
 
 window.addEventListener('DOMContentLoaded', async () => {
-  const { data: { user } } = await supabase.auth.getUser()
+  const { data: { Web } } = await supabase.auth.getUser()
   if (user) loadData()
 })
 </script>
